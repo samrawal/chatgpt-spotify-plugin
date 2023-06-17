@@ -1,0 +1,4 @@
+environment/
+__pycache__/
+.DS_Store
+secrets.json

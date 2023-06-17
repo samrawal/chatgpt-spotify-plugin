@@ -1,0 +1,33 @@
+openapi: 3.0.0
+info:
+  title: Spotify ChatGPT
+  version: 0.1
+servers:
+  - url: http://localhost:9080
+paths:
+  /create_playlist:
+    get:
+      operationId: create_playlist
+      summary: Create a new playlist on Spotify and add songs to it. Pass in a single string containing songs that are separated with semicolon. If the artist name is known, pass in all songs in format "<song name> by <artist name>".
+      parameters:
+        - name: song_list
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: playlist_name
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  playlist:
+                    type: object
+

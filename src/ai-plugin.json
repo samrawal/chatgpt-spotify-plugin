@@ -1,0 +1,19 @@
+{
+    "schema_version": "v1",
+    "name_for_human": "Spotify ChatGPT",
+    "name_for_model": "spotifychatgpt",
+    "description_for_human": "Create Spotify playlists with ChatGPT.",
+    "description_for_model": "Create Spotify playlists with this plugin. This plugin allows you to create a new playlist and add songs to it. You need to provide a list of songs and a name for the playlist.",
+    "auth": {
+        "type": "none"
+    },
+    "api": {
+        "type": "openapi",
+        "url": "http://localhost:9080/openapi.yaml",
+        "is_user_authenticated": true
+    },
+    "logo_url": "http://localhost:9080/icon.png",
+    "contact_email": "me@samrawal.com",
+    "legal_info_url": "https://labs.cactiml.com/legal"
+}
+
