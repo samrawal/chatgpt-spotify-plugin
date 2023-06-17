@@ -12,13 +12,21 @@ CORS(app)  # This will enable CORS for all routes
 
 # Credentials you get from registering a new application
 secrets = json.load(open("secrets.json", "r"))
-client_id = secrets['client_id']
+client_id = secrets["client_id"]
 
-client_secret = secrets['client_secret']
-redirect_uri='http://localhost:9080'
-scope = 'playlist-modify-public'
+client_secret = secrets["client_secret"]
+redirect_uri = "http://localhost:9080"
+scope = "playlist-modify-public"
 
-sp = spotipy.Spotify(auth_manager=SpotifyOAuth(scope=scope, client_id=client_id, client_secret=client_secret, redirect_uri=redirect_uri))
+sp = spotipy.Spotify(
+    auth_manager=SpotifyOAuth(
+        scope=scope,
+        client_id=client_id,
+        client_secret=client_secret,
+        redirect_uri=redirect_uri,
+    )
+)
+
 
 @app.route("/create_playlist", methods=["GET"])
 def create_playlist():
@@ -29,8 +37,9 @@ def create_playlist():
     create_playlist_fn(song_list, playlist_name)
     return jsonify({"success": True})
 
+
 def create_playlist_fn(song_list, playlist_name="New Playlist"):
-    user_id = sp.current_user()['id']
+    user_id = sp.current_user()["id"]
 
     # Create a new playlist
     playlist = sp.user_playlist_create(user_id, playlist_name)
@@ -40,8 +49,7 @@ def create_playlist_fn(song_list, playlist_name="New Playlist"):
         results = sp.search(q=song, limit=1)
         if results["tracks"]["items"]:
             track_id = results["tracks"]["items"][0]["id"]
-            sp.playlist_add_items(playlist['id'], [track_id])
-
+            sp.playlist_add_items(playlist["id"], [track_id])
 
 
 @app.route("/.well-known/ai-plugin.json", methods=["GET"])
@@ -64,7 +72,6 @@ def openapi_spec():
 @app.route("/icon.png", methods=["GET"])
 def get_icon():
     return send_file("icon.png", mimetype="image/png")
-
 
 
 def run_server():
