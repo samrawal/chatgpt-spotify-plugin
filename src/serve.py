@@ -12,8 +12,8 @@ CORS(app)  # This will enable CORS for all routes
 
 # Credentials you get from registering a new application
 secrets = json.load(open("secrets.json", "r"))
-client_id = secrets["client_id"]
 
+client_id = secrets["client_id"]
 client_secret = secrets["client_secret"]
 redirect_uri = "http://localhost:9080"
 scope = "playlist-modify-public"
